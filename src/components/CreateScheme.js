@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createProgramme, fetchProgrammes } from "../actions";
+import { createScheme, fetchSchemes } from "../actions";
 import { Field, reduxForm } from "redux-form";
 import {
   Segment,
@@ -10,16 +10,16 @@ import {
   Header,
   Table
 } from "semantic-ui-react";
-class CreateProgramme extends Component {
+class CreateScheme extends Component {
   componentDidMount() {
-    this.props.fetchProgrammes();
+    this.props.fetchSchemes();
   }
   componentDidUpdate() {
-    this.props.fetchProgrammes();
+    this.props.fetchSchemes();
   }
   onSubmit = formValues => {
-    this.props.createProgramme(formValues);
-    this.props.reset("createProgramme");
+    this.props.createScheme(formValues);
+    this.props.reset("createScheme");
   };
 
   renderInput = ({ label, input }) => {
@@ -30,20 +30,18 @@ class CreateProgramme extends Component {
       </div>
     );
   };
-  renderProgrammes = () => {
-    return this.props.programmes.map(programme => {
-      if (programme) {
+  renderSchemes = () => {
+    return this.props.schemes.map(scheme => {
+      if (scheme) {
         return (
-          <React.Fragment key={programme.id}>
-            <Table.Row key={programme.id}>
-              <Table.Cell collapsing>{programme.code}</Table.Cell>
-              <Table.Cell>{programme.name}</Table.Cell>
-              <Table.Cell collapsing>{programme.start_year}</Table.Cell>
+          <React.Fragment key={scheme.id}>
+            <Table.Row key={scheme.id}>
+              <Table.Cell collapsing>{scheme.name}</Table.Cell>
             </Table.Row>
           </React.Fragment>
         );
       }
-      return programme;
+      return scheme;
     });
   };
 
@@ -52,7 +50,7 @@ class CreateProgramme extends Component {
       <React.Fragment>
         <Container text>
           <Header as="h2" textAlign="center" block style={{ marginTop: "5px" }}>
-            Create Programme
+            Create Scheme
           </Header>
           <Segment attached>
             <Form as="form" onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -60,21 +58,7 @@ class CreateProgramme extends Component {
                 <Field
                   name="name"
                   component={this.renderInput}
-                  label="Enter Programme Name"
-                />
-              </Form.Field>
-              <Form.Field>
-                <Field
-                  name="code"
-                  component={this.renderInput}
-                  label="Enter Programme Code"
-                />
-              </Form.Field>
-              <Form.Field>
-                <Field
-                  name="start_year"
-                  component={this.renderInput}
-                  label="Enter Start Year"
+                  label="Enter Scheme Name"
                 />
               </Form.Field>
 
@@ -84,13 +68,11 @@ class CreateProgramme extends Component {
           <Table celled striped size="small">
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Code</Table.HeaderCell>
                 <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Start Year</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
-            <Table.Body>{this.renderProgrammes()}</Table.Body>
+            <Table.Body>{this.renderSchemes()}</Table.Body>
           </Table>
         </Container>
       </React.Fragment>
@@ -98,16 +80,16 @@ class CreateProgramme extends Component {
   }
 }
 const mapStateToProps = state => {
-  return { programmes: Object.values(state.programmes) };
+  return { schemes: Object.values(state.schemes) };
 };
 const formWrapped = reduxForm({
-  form: "createProgramme"
-})(CreateProgramme);
+  form: "createScheme"
+})(CreateScheme);
 
 export default connect(
   mapStateToProps,
   {
-    createProgramme,
-    fetchProgrammes
+    createScheme,
+    fetchSchemes
   }
 )(formWrapped);

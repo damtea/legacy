@@ -6,6 +6,7 @@ import CreateProgramme from "./components/CreateProgramme";
 import CreateDepartment from "./components/CreateDepartment";
 import CreateSchool from "./components/CreateSchool";
 import SideBar from "./components/Sidebar";
+import CreateScheme from "./components/CreateScheme";
 import "semantic-ui-css/semantic.min.css";
 const Containers = ({ children }) => (
   <div>
@@ -33,6 +34,7 @@ class App extends React.Component {
                   component={CreateDepartment}
                 />
                 <Route path="/createschool" exact component={CreateSchool} />
+                <Route path="/createscheme" exact component={CreateScheme} />
               </Switch>
             </Containers>
           </div>

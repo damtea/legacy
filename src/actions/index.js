@@ -84,3 +84,21 @@ export const fetchSchools = () => {
     dispatch({ type: "FETCH_SCHOOLS", payload: response.data });
   };
 };
+
+export const createScheme = formValues => async dispatch => {
+  try {
+    const response = await api.post("/scheme/?format=json", {
+      ...formValues
+    });
+    dispatch({ type: "CREATE_SCHEME", payload: response.data });
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const fetchSchemes = () => {
+  return async dispatch => {
+    const response = await api.get("/scheme/?format=json");
+    dispatch({ type: "FETCH_SCHEMES", payload: response.data });
+  };
+};

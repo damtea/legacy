@@ -63,7 +63,9 @@ export default class SideBar extends Component {
                     <Dropdown.Item as={Link} to="/createprogramme">
                       Programme Creation
                     </Dropdown.Item>
-                    <Dropdown.Item>Scheme Creation</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/createscheme">
+                      Scheme Creation
+                    </Dropdown.Item>
                     <Dropdown.Item>Semester Creation</Dropdown.Item>
                     <Dropdown.Item>Course Creation</Dropdown.Item>
                   </Dropdown.Menu>
