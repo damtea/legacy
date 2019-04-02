@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createProgramme, fetchProgrammes } from "../actions";
+import { createSchool, fetchSchools } from "../actions";
 import { Field, reduxForm } from "redux-form";
 import {
   Segment,
@@ -10,16 +10,16 @@ import {
   Header,
   Table
 } from "semantic-ui-react";
-class CreateProgramme extends Component {
+class CreateSchool extends Component {
   componentDidMount() {
-    this.props.fetchProgrammes();
+    this.props.fetchSchools();
   }
   componentDidUpdate() {
-    this.props.fetchProgrammes();
+    this.props.fetchSchools();
   }
   onSubmit = formValues => {
-    this.props.createProgramme(formValues);
-    this.props.reset("createProgramme");
+    this.props.createSchool(formValues);
+    this.props.reset("createSchool");
   };
 
   renderInput = ({ label, input }) => {
@@ -30,20 +30,19 @@ class CreateProgramme extends Component {
       </div>
     );
   };
-  renderDepartments = () => {
-    return this.props.departments.map(department => {
-      if (department) {
+  renderSchools = () => {
+    return this.props.schools.map(school => {
+      if (school) {
         return (
-          <React.Fragment key={department.id}>
-            <Table.Row key={department.id}>
-              <Table.Cell collapsing>{department.code}</Table.Cell>
-              <Table.Cell>{department.name}</Table.Cell>
-              <Table.Cell collapsing>{department.start_year}</Table.Cell>
+          <React.Fragment key={school.id}>
+            <Table.Row key={school.id}>
+              <Table.Cell collapsing>{school.code}</Table.Cell>
+              <Table.Cell>{school.name}</Table.Cell>
             </Table.Row>
           </React.Fragment>
         );
       }
-      return department;
+      return school;
     });
   };
 
@@ -52,7 +51,7 @@ class CreateProgramme extends Component {
       <React.Fragment>
         <Container text>
           <Header as="h2" textAlign="center" block style={{ marginTop: "5px" }}>
-            Create Programme
+            Create School
           </Header>
           <Segment attached>
             <Form as="form" onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -60,21 +59,14 @@ class CreateProgramme extends Component {
                 <Field
                   name="name"
                   component={this.renderInput}
-                  label="Enter Programme Name"
+                  label="Enter School Name"
                 />
               </Form.Field>
               <Form.Field>
                 <Field
                   name="code"
                   component={this.renderInput}
-                  label="Enter Programme Code"
-                />
-              </Form.Field>
-              <Form.Field>
-                <Field
-                  name="start_year"
-                  component={this.renderInput}
-                  label="Enter Start Year"
+                  label="Enter School Code"
                 />
               </Form.Field>
 
@@ -86,11 +78,10 @@ class CreateProgramme extends Component {
               <Table.Row>
                 <Table.HeaderCell>Code</Table.HeaderCell>
                 <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Start Year</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
-            <Table.Body>{this.renderDepartments()}</Table.Body>
+            <Table.Body>{this.renderSchools()}</Table.Body>
           </Table>
         </Container>
       </React.Fragment>
@@ -98,16 +89,16 @@ class CreateProgramme extends Component {
   }
 }
 const mapStateToProps = state => {
-  return { programmes: Object.values(state.programmes) };
+  return { schools: Object.values(state.schools) };
 };
 const formWrapped = reduxForm({
-  form: "createProgramme"
-})(CreateProgramme);
+  form: "createSchool"
+})(CreateSchool);
 
 export default connect(
   mapStateToProps,
   {
-    createProgramme,
-    fetchProgrammes
+    createSchool,
+    fetchSchools
   }
 )(formWrapped);

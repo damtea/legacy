@@ -4,25 +4,42 @@ import createStudents from "./components/createStudents";
 import Home from "./components/Home";
 import CreateProgramme from "./components/CreateProgramme";
 import CreateDepartment from "./components/CreateDepartment";
-const App = () => {
-  return (
-    <div>
-      <Router>
-        <div>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/new" exact component={createStudents} />
-            <Route path="/createprogramme" exact component={CreateProgramme} />
-            <Route
-              path="/createdepartment"
-              exact
-              component={CreateDepartment}
-            />
-          </Switch>
-        </div>
-      </Router>
-    </div>
-  );
-};
+import CreateSchool from "./components/CreateSchool";
+import SideBar from "./components/Sidebar";
+import "semantic-ui-css/semantic.min.css";
+const Containers = ({ children }) => (
+  <div>
+    <SideBar>{children}</SideBar>
+  </div>
+);
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Router>
+          <div>
+            <Containers>
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/new" exact component={createStudents} />
+                <Route
+                  path="/createprogramme"
+                  exact
+                  component={CreateProgramme}
+                />
+                <Route
+                  path="/createdepartment"
+                  exact
+                  component={CreateDepartment}
+                />
+                <Route path="/createschool" exact component={CreateSchool} />
+              </Switch>
+            </Containers>
+          </div>
+        </Router>
+      </div>
+    );
+  }
+}
 
 export default App;

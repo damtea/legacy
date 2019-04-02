@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchStudent } from "../actions";
 import { Field, reduxForm } from "redux-form";
-
+import { Segment, Container } from "semantic-ui-react";
 class Home extends Component {
   onSubmit = formValues => {
     this.props.fetchStudent(formValues.id);
@@ -32,21 +32,25 @@ class Home extends Component {
   };
   render() {
     return (
-      <div>
-        <h3>Search Student</h3>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-          <div className="field">
-            <Field
-              name="id"
-              component={this.renderInput}
-              label="Enter Roll number"
-            />
-          </div>
+      <React.Fragment>
+        <Segment placeholder>
+          <Container text>
+            <h3>Search Student</h3>
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+              <div className="field">
+                <Field
+                  name="id"
+                  component={this.renderInput}
+                  label="Enter Roll number"
+                />
+              </div>
 
-          <button className="ui button primary">Search</button>
-        </form>
-        {this.renderStudents()}
-      </div>
+              <button className="ui button primary">Search</button>
+            </form>
+            {this.renderStudents()}
+          </Container>
+        </Segment>
+      </React.Fragment>
     );
   }
 }
