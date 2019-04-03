@@ -46,7 +46,9 @@ export default class SideBar extends Component {
                 <Dropdown.Item as={Link} to="/new">
                   Student
                 </Dropdown.Item>
-                <Dropdown.Item>Admission Batch</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/admissionbatch">
+                  Admission Batch
+                </Dropdown.Item>
                 <Dropdown.Item>Registration Number</Dropdown.Item>
                 <DropdownDivider />
                 <Dropdown.Item>

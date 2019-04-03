@@ -5,11 +5,13 @@ import programmeReducer from "./programmeReducer";
 import departmentReducer from "./departmentReducer";
 import schoolReducer from "./schoolReducer";
 import schemeReducer from "./schemeReducer";
+import batchReducer from "./batchReducer";
 export default combineReducers({
   form: formReducer,
   students: studentReducer,
   programmes: programmeReducer,
   departments: departmentReducer,
   schools: schoolReducer,
-  schemes: schemeReducer
+  schemes: schemeReducer,
+  batchs: batchReducer
 });

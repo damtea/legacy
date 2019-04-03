@@ -2,7 +2,9 @@ import api from "../api/api";
 
 export const createStudent = formValues => async dispatch => {
   try {
-    const response = await api.post("/student/?format=json", { ...formValues });
+    const response = await api.post("/student/student/?format=json", {
+      ...formValues
+    });
     dispatch({ type: "CREATE_STUDENT", payload: response.data });
   } catch (error) {
     alert(error);
@@ -12,7 +14,7 @@ export const createStudent = formValues => async dispatch => {
 export const fetchStudents = () => {
   return async dispatch => {
     try {
-      const response = await api.get("/student/?format=json");
+      const response = await api.get("/student/student/?format=json");
       dispatch({ type: "FETCH_STUDENTS", payload: response.data });
     } catch (error) {
       console.log(error);
@@ -23,11 +25,29 @@ export const fetchStudents = () => {
 export const fetchStudent = id => {
   return async dispatch => {
     try {
-      const response = await api.get(`/student/${id}`);
+      const response = await api.get(`/student/student/${id}`);
       dispatch({ type: "FETCH_STUDENT", payload: response.data });
     } catch (error) {
       dispatch({ type: "ERROR", payload: { name: "Search Not Found" } });
     }
+  };
+};
+export const editStudent = (id, formValues) => {
+  return async dispatch => {
+    try {
+      const response = await api.patch(`/student/student/${id}/?format=json`, {
+        ...formValues
+      });
+      dispatch({ type: "EDIT_STUDENT", payload: response.data });
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+export const deleteStudent = id => {
+  return async dispatch => {
+    await api.delete(`/student/student/${id}`);
+    dispatch({ type: "DELETE_STUDENT", payload: id });
   };
 };
 
@@ -38,7 +58,7 @@ export const createProgramme = formValues => async dispatch => {
     });
     dispatch({ type: "CREATE_PROGRAMME", payload: response.data });
   } catch (error) {
-    alert("Already Exits");
+    alert(error);
   }
 };
 
@@ -46,6 +66,24 @@ export const fetchProgrammes = () => {
   return async dispatch => {
     const response = await api.get("/programme/?format=json");
     dispatch({ type: "FETCH_PROGRAMMES", payload: response.data });
+  };
+};
+export const editProgramme = (id, formValues) => {
+  return async dispatch => {
+    try {
+      const response = await api.patch(`/programme/${id}/?format=json`, {
+        ...formValues
+      });
+      dispatch({ type: "EDIT_PROGRAMME", payload: response.data });
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+export const deleteProgramme = id => {
+  return async dispatch => {
+    await api.delete(`/programme/${id}`);
+    dispatch({ type: "DELETE_PROGRAMME", payload: id });
   };
 };
 
@@ -100,5 +138,23 @@ export const fetchSchemes = () => {
   return async dispatch => {
     const response = await api.get("/scheme/?format=json");
     dispatch({ type: "FETCH_SCHEMES", payload: response.data });
+  };
+};
+
+export const createBatch = formValues => async dispatch => {
+  try {
+    const response = await api.post("/admissionbatch/?format=json", {
+      ...formValues
+    });
+    dispatch({ type: "CREATE_BATCH", payload: response.data });
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const fetchBatchs = () => {
+  return async dispatch => {
+    const response = await api.get("/admissionbatch/?format=json");
+    dispatch({ type: "FETCH_BATCHS", payload: response.data });
   };
 };

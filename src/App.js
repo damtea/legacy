@@ -7,6 +7,8 @@ import CreateDepartment from "./components/CreateDepartment";
 import CreateSchool from "./components/CreateSchool";
 import SideBar from "./components/Sidebar";
 import CreateScheme from "./components/CreateScheme";
+import CreateBatch from "./components/CreateBatch";
+import CreateRegistration from "./components/CreateRegistration";
 import "semantic-ui-css/semantic.min.css";
 const Containers = ({ children }) => (
   <div>
@@ -35,6 +37,12 @@ class App extends React.Component {
                 />
                 <Route path="/createschool" exact component={CreateSchool} />
                 <Route path="/createscheme" exact component={CreateScheme} />
+                <Route path="/admissionbatch" exact component={CreateBatch} />
+                <Route
+                  path="/createregistration"
+                  exact
+                  component={CreateRegistration}
+                />
               </Switch>
             </Containers>
           </div>

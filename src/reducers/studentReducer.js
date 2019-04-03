@@ -9,6 +9,10 @@ export default (state = {}, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case "ERROR":
       return { ...action.payload };
+    case "DELETE_STUDENT":
+      return _.omit(state, action.payload);
+    case "EDIT_STUDENT":
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }
