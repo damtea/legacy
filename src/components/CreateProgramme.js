@@ -89,19 +89,17 @@ class CreateProgramme extends Component {
   componentDidMount() {
     this.props.fetchProgrammes();
   }
-  componentDidUpdate() {
-    this.props.fetchProgrammes();
-  }
+
   onSubmit = formValues => {
     this.props.createProgramme(formValues);
     this.props.reset("createProgramme");
   };
 
-  renderInput = ({ label, input }) => {
+  renderInput = ({ label, input, placeholder }) => {
     return (
       <div>
         <label> {label} </label>
-        <input {...input} />
+        <input {...input} placeholder={placeholder} />
       </div>
     );
   };
@@ -160,21 +158,24 @@ class CreateProgramme extends Component {
                 <Field
                   name="name"
                   component={this.renderInput}
-                  label="Enter Programme Name"
+                  label="Programme Name"
+                  placeholder="Name..."
                 />
               </Form.Field>
               <Form.Field>
                 <Field
                   name="code"
                   component={this.renderInput}
-                  label="Enter Programme Code"
+                  label="Programme Code"
+                  placeholder="Code..."
                 />
               </Form.Field>
               <Form.Field>
                 <Field
                   name="start_year"
                   component={this.renderInput}
-                  label="Enter Start Year"
+                  label="Start Year"
+                  placeholder="Starting year..."
                 />
               </Form.Field>
 

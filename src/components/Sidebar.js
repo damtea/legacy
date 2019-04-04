@@ -40,7 +40,7 @@ export default class SideBar extends Component {
               Legacy
             </Menu.Item>
 
-            <Dropdown item simple text="Menu">
+            <Dropdown item simple closeOnChange text="Menu">
               <Dropdown.Menu>
                 <Dropdown.Header>STUDENTS</Dropdown.Header>
                 <Dropdown.Item as={Link} to="/new">

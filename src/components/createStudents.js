@@ -90,9 +90,7 @@ class createStudents extends Component {
   componentDidMount() {
     this.props.fetchStudents();
   }
-  componentDidUpdate() {
-    this.props.fetchStudents();
-  }
+
   onSubmit = formValues => {
     this.props.createStudent(formValues);
     this.props.reset("createStudent");
