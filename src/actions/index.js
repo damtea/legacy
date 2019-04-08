@@ -2,7 +2,7 @@ import api from "../api/api";
 
 export const createStudent = formValues => async dispatch => {
   try {
-    const response = await api.post("/student/student/?format=json", {
+    const response = await api.post("/student/?format=json", {
       ...formValues
     });
     dispatch({ type: "CREATE_STUDENT", payload: response.data });
@@ -14,7 +14,7 @@ export const createStudent = formValues => async dispatch => {
 export const fetchStudents = () => {
   return async dispatch => {
     try {
-      const response = await api.get("/student/student/?format=json");
+      const response = await api.get("/student/?format=json");
       dispatch({ type: "FETCH_STUDENTS", payload: response.data });
     } catch (error) {
       console.log(error);
@@ -25,17 +25,18 @@ export const fetchStudents = () => {
 export const fetchStudent = id => {
   return async dispatch => {
     try {
-      const response = await api.get(`/student/student/${id}`);
+      const response = await api.get(`/student/${id}`);
       dispatch({ type: "FETCH_STUDENT", payload: response.data });
     } catch (error) {
       dispatch({ type: "ERROR", payload: { name: "Search Not Found" } });
     }
   };
 };
+
 export const editStudent = (id, formValues) => {
   return async dispatch => {
     try {
-      const response = await api.patch(`/student/student/${id}/?format=json`, {
+      const response = await api.patch(`/student/${id}/?format=json`, {
         ...formValues
       });
       dispatch({ type: "EDIT_STUDENT", payload: response.data });
@@ -156,5 +157,23 @@ export const fetchBatchs = () => {
   return async dispatch => {
     const response = await api.get("/admissionbatch/?format=json");
     dispatch({ type: "FETCH_BATCHS", payload: response.data });
+  };
+};
+
+export const fetchExamination = id => {
+  return async dispatch => {
+    try {
+      const response = await api.get(`/examination/${id}`);
+      dispatch({ type: "FETCH_EXAMINATION", payload: response.data });
+    } catch (error) {
+      dispatch({ type: "ERROR", payload: { name: "Search Not Found" } });
+    }
+  };
+};
+
+export const fetchCourses = () => {
+  return async dispatch => {
+    const response = await api.get("/course/?format=json");
+    dispatch({ type: "FETCH_COURSES", payload: response.data });
   };
 };

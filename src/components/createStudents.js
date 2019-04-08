@@ -109,30 +109,28 @@ class createStudents extends Component {
       return this.props.students.map(student => {
         if (student) {
           return (
-            <React.Fragment key={student.id}>
-              <Table.Row key={student.id}>
-                <Table.Cell collapsing>{student.id}</Table.Cell>
-                <Table.Cell>{student.name}</Table.Cell>
-                <Table.Cell collapsing>{student.Gender}</Table.Cell>
-                <Table.Cell collapsing>{student.category}</Table.Cell>
-                <Table.Cell collapsing>
-                  <Button.Group compact>
-                    <Button
-                      icon="edit"
-                      primary
-                      compact
-                      onClick={e => this.editShow(student)}
-                    />
-                    <Button
-                      icon="trash alternate"
-                      negative
-                      compact
-                      onClick={e => this.deleteShow(student)}
-                    />
-                  </Button.Group>
-                </Table.Cell>
-              </Table.Row>
-            </React.Fragment>
+            <Table.Row key={student.id}>
+              <Table.Cell collapsing>{student.id}</Table.Cell>
+              <Table.Cell>{student.name}</Table.Cell>
+              <Table.Cell collapsing>{student.Gender}</Table.Cell>
+              <Table.Cell collapsing>{student.category}</Table.Cell>
+              <Table.Cell collapsing>
+                <Button.Group compact>
+                  <Button
+                    icon="edit"
+                    primary
+                    compact
+                    onClick={e => this.editShow(student)}
+                  />
+                  <Button
+                    icon="trash alternate"
+                    negative
+                    compact
+                    onClick={e => this.deleteShow(student)}
+                  />
+                </Button.Group>
+              </Table.Cell>
+            </Table.Row>
           );
         }
         return student;

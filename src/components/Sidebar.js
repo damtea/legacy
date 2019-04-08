@@ -24,7 +24,7 @@ export default class SideBar extends Component {
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <Menu fixed="top" inverted>
+          <Menu fixed="top" inverted color="teal">
             <Menu.Item onClick={this.handleShowClick}>
               <Button icon basic inverted toggle>
                 <Icon name="content" />
