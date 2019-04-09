@@ -21,10 +21,15 @@ export default class SideBar extends Component {
   render() {
     const { visible } = this.state;
     const { children } = this.props;
+
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <Menu fixed="top" inverted color="teal">
+          <Menu
+            fixed="top"
+            inverted
+            style={{ backgroundColor: "#1C5A28", height: "50px" }}
+          >
             <Menu.Item onClick={this.handleShowClick}>
               <Button icon basic inverted toggle>
                 <Icon name="content" />
@@ -114,7 +119,7 @@ export default class SideBar extends Component {
             attached="bottom"
             textAlign="center"
           >
-            MZU
+            Mizoram University, Examination Technical Section.
           </Segment>
         </Sidebar.Pushable>
       </div>

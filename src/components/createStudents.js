@@ -132,8 +132,9 @@ class createStudents extends Component {
               </Table.Cell>
             </Table.Row>
           );
+        } else {
+          return <React.Fragment />;
         }
-        return student;
       });
     }
   };
@@ -216,7 +217,6 @@ class createStudents extends Component {
                 <Table.HeaderCell textAlign="center">...</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
-
             <Table.Body>{this.renderStudents()}</Table.Body>
           </Table>
         </Container>

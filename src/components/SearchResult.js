@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStudent, fetchExamination, fetchCourses } from "../actions";
-import { Segment, Container, Table, List } from "semantic-ui-react";
+import {
+  fetchStudent,
+  fetchExamination,
+  fetchCourses,
+  resetCourses
+} from "../actions";
+import { Segment, Header, Container, Table, List } from "semantic-ui-react";
 
 class SearchResult extends Component {
   state = {
@@ -11,12 +16,15 @@ class SearchResult extends Component {
     ThirdTotal: null,
     FourthTotal: null
   };
-  componentDidMount() {
-    this.props.fetchStudent(this.props.match.params.id);
+  async componentDidMount() {
     this.props.fetchExamination(this.props.match.params.id);
     this.props.fetchCourses();
+    this.props.fetchStudent(this.props.match.params.id);
   }
 
+  componentWillUnmount() {
+    this.props.resetCourses();
+  }
   Tables = () => {
     return (
       <Segment>
@@ -289,12 +297,35 @@ class SearchResult extends Component {
     }
   };
   render() {
-    return (
-      <React.Fragment>
-        <Container>{this.renderStudents()}</Container>
-        {this.Tables()}
-      </React.Fragment>
-    );
+    if (this.props.students) {
+      if (this.props.marks.name) {
+        return (
+          <React.Fragment>
+            <Container> {this.renderStudents()} </Container>
+            <Header as="h1" textAlign="center">
+              No Marks
+            </Header>
+          </React.Fragment>
+        );
+      } else {
+        return (
+          <React.Fragment>
+            <Container> {this.renderStudents()} </Container>
+            {this.Tables()}
+          </React.Fragment>
+        );
+      }
+    } else {
+      return (
+        <React.Fragment>
+          <Container>
+            <Header as="h5" textAlign="center">
+              Search Not Found
+            </Header>
+          </Container>
+        </React.Fragment>
+      );
+    }
   }
 }
 const mapStateToProps = (state, ownProps) => {
@@ -310,6 +341,7 @@ export default connect(
   {
     fetchStudent,
     fetchExamination,
-    fetchCourses
+    fetchCourses,
+    resetCourses
   }
 )(SearchResult);

@@ -7,32 +7,43 @@ const LoginForm = () => (
     style={{ height: "100%", marginTop: "25px" }}
     verticalAlign="middle"
   >
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as="h2" color="teal" textAlign="center">
-        <Image src="/logo.jpg" /> Log-in to your account
-      </Header>
-      <Form size="large">
-        <Segment stacked>
-          <Form.Input
-            fluid
-            icon="user"
-            iconPosition="left"
-            placeholder="E-mail address"
-          />
-          <Form.Input
-            fluid
-            icon="lock"
-            iconPosition="left"
-            placeholder="Password"
-            type="password"
-          />
+    <Segment>
+      <Grid.Column style={{ maxWidth: 450 }} textAlign="center">
+        <Header as="h1" textAlign="center">
+          <Image src="/logo.jpg" />
+        </Header>
+        <Header as="h2" style={{ color: "black" }} textAlign="center">
+          Login to MZU Examination Site
+        </Header>
+        <Form>
+          <Segment stacked>
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="Username"
+              required
+            />
+            <Form.Input
+              fluid
+              icon="lock"
+              iconPosition="left"
+              placeholder="Password"
+              type="password"
+              required
+            />
 
-          <Button color="teal" fluid size="large">
-            Login
-          </Button>
-        </Segment>
-      </Form>
-    </Grid.Column>
+            <Button
+              style={{ backgroundColor: "#1C5A28", color: "white" }}
+              fluid
+              size="large"
+            >
+              Login
+            </Button>
+          </Segment>
+        </Form>
+      </Grid.Column>
+    </Segment>
   </Grid>
 );
 

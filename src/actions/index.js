@@ -33,6 +33,24 @@ export const fetchStudent = id => {
   };
 };
 
+export const resetStudent = () => {
+  return async dispatch => {
+    await dispatch({ type: "RESET_STUDENT" });
+  };
+};
+
+export const resetExamination = () => {
+  return async dispatch => {
+    await dispatch({ type: "RESET_EXAMINATION" });
+  };
+};
+
+export const resetCourses = () => {
+  return async dispatch => {
+    await dispatch({ type: "RESET_COURSES" });
+  };
+};
+
 export const editStudent = (id, formValues) => {
   return async dispatch => {
     try {

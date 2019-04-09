@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Form, Button, Segment, Container } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  Segment,
+  Container,
+  Message,
+  Header
+} from "semantic-ui-react";
 
 import { withRouter } from "react-router-dom";
 class Search extends Component {
@@ -19,8 +26,13 @@ class Search extends Component {
   render() {
     return (
       <React.Fragment>
-        <Segment>
-          <Container text>
+        <Segment textAlign="center">
+          <Container text textAlign="center">
+            <Message>
+              <Header as="h3">
+                Welcome to MZU Examination Legacy Mark Application
+              </Header>
+            </Message>
             <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
               <Form.Group inline>
                 <Form.Field required>

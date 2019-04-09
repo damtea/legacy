@@ -5,6 +5,8 @@ export default (state = {}, action) => {
       return { ...state, ..._.mapKeys(action.payload, "id") };
     case "ERROR":
       return { ...action.payload };
+    case "RESET_COURSES":
+      return {};
     default:
       return state;
   }

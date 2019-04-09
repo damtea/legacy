@@ -13,6 +13,8 @@ export default (state = {}, action) => {
       return _.omit(state, action.payload);
     case "EDIT_STUDENT":
       return { ...state, [action.payload.id]: action.payload };
+    case "RESET_STUDENT":
+      return {};
     default:
       return state;
   }
