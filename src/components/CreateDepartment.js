@@ -32,7 +32,7 @@ class CreateDepartment extends Component {
   };
   renderDepartments = () => {
     return this.props.departments.map(department => {
-      if (department) {
+      if (department !== "Search Not Found") {
         return (
           <React.Fragment key={department.id}>
             <Table.Row key={department.id}>
@@ -43,7 +43,7 @@ class CreateDepartment extends Component {
           </React.Fragment>
         );
       }
-      return department;
+      return <React.Fragment key={department} />;
     });
   };
 

@@ -114,7 +114,7 @@ class CreateProgramme extends Component {
   };
   renderProgrammes = () => {
     return this.props.programmes.map(programme => {
-      if (programme) {
+      if (programme !== "Search Not Found") {
         return (
           <React.Fragment key={programme.id}>
             <Table.Row key={programme.id}>
@@ -141,7 +141,7 @@ class CreateProgramme extends Component {
           </React.Fragment>
         );
       }
-      return programme;
+      return <React.Fragment key={programme} />;
     });
   };
 

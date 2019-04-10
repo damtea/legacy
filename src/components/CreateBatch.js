@@ -32,7 +32,7 @@ class CreateBatch extends Component {
   };
   renderBatchs = () => {
     return this.props.batchs.map(batch => {
-      if (batch) {
+      if (batch !== "Search Not Found") {
         return (
           <React.Fragment key={batch.id}>
             <Table.Row key={batch.id}>
@@ -42,7 +42,7 @@ class CreateBatch extends Component {
           </React.Fragment>
         );
       }
-      return batch;
+      return <React.Fragment key={batch} />;
     });
   };
 

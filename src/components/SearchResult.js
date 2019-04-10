@@ -232,7 +232,7 @@ class SearchResult extends Component {
                     style={style}
                     collapsing
                   >
-                    {(semcount = semcount + 1) === 1 ? sem : null}
+                    <b> {(semcount = semcount + 1) === 1 ? sem : null}</b>
                   </Table.Cell>
                   <Table.Cell rowSpan="2" collapsing style={style}>
                     {mark.code}

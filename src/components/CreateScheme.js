@@ -139,7 +139,7 @@ class CreateScheme extends Component {
   renderSchemes = () => {
     const style = { padding: 0 };
     return this.props.schemes.map(scheme => {
-      if (scheme) {
+      if (scheme !== "Search Not Found") {
         const progname = this.props.programmes.map(programme => {
           if (programme.id === scheme.programme) {
             return programme.name;
@@ -192,20 +192,20 @@ class CreateScheme extends Component {
           </Table.Row>
         );
       }
-      return scheme;
+      return <React.Fragment key={scheme} />;
     });
   };
 
   renderProgrammes = () => {
     return this.props.programmes.map(programme => {
-      if (programme) {
+      if (programme !== "Search Not Found") {
         return (
           <option value={programme.id} key={programme.id}>
             {programme.name}
           </option>
         );
       }
-      return programme;
+      return <React.Fragment key={programme} />;
     });
   };
 

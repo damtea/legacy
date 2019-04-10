@@ -105,9 +105,9 @@ class createStudents extends Component {
     );
   };
   renderStudents = () => {
-    if (this.props.students.length > 0) {
+    if (this.props.students) {
       return this.props.students.map(student => {
-        if (student) {
+        if (student !== "Search Not Found") {
           return (
             <Table.Row key={student.id}>
               <Table.Cell collapsing>{student.id}</Table.Cell>
@@ -133,7 +133,7 @@ class createStudents extends Component {
             </Table.Row>
           );
         } else {
-          return <React.Fragment />;
+          return <React.Fragment key={student} />;
         }
       });
     }

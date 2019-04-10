@@ -32,7 +32,8 @@ class CreateSchool extends Component {
   };
   renderSchools = () => {
     return this.props.schools.map(school => {
-      if (school) {
+      if (school !== "Search Not Found") {
+        console.log(school);
         return (
           <React.Fragment key={school.id}>
             <Table.Row key={school.id}>
@@ -42,7 +43,7 @@ class CreateSchool extends Component {
           </React.Fragment>
         );
       }
-      return school;
+      return <React.Fragment key={school} />;
     });
   };
 
