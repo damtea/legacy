@@ -8,6 +8,7 @@ import schemeReducer from "./schemeReducer";
 import batchReducer from "./batchReducer";
 import examinationReducer from "./examinationReducer";
 import courseReducer from "./courseReducer";
+import authReducer from "./authReducer";
 export default combineReducers({
   form: formReducer,
   students: studentReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
   schemes: schemeReducer,
   batchs: batchReducer,
   marks: examinationReducer,
-  courses: courseReducer
+  courses: courseReducer,
+  auth: authReducer
 });

@@ -10,8 +10,9 @@ import {
   DropdownDivider
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-
-export default class SideBar extends Component {
+import { logout } from "../actions";
+import { connect } from "react-redux";
+class SideBar extends Component {
   state = { visible: false };
 
   handleHideClick = () => this.setState({ visible: false });
@@ -89,6 +90,7 @@ export default class SideBar extends Component {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+            <Menu.Item onClick={this.props.logout}>Logout</Menu.Item>
           </Menu>
           <Sidebar
             as={Menu}
@@ -126,3 +128,7 @@ export default class SideBar extends Component {
     );
   }
 }
+export default connect(
+  null,
+  { logout }
+)(SideBar);

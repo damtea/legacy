@@ -11,6 +11,67 @@ export const createStudent = formValues => async dispatch => {
   }
 };
 
+export const authSubmit = formValues => async dispatch => {
+  try {
+    const response = await api.post("/user/login", {
+      ...formValues
+    });
+
+    if (
+      response.data.message === "Authentication successful" &&
+      response.data.token
+    ) {
+      localStorage.setItem("token", response.data.token);
+
+      return dispatch({ type: "AUTH_SUCCESS", payload: response.data });
+    }
+    return dispatch({ type: "AUTH_FAIL", payload: response.data });
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const logout = () => async dispatch => {
+  try {
+    if (localStorage.getItem("token")) {
+      localStorage.removeItem("token");
+      return dispatch({
+        type: "AUTH_FAIL",
+        payload: { message: "Authentication failed" }
+      });
+    }
+    return dispatch({
+      type: "AUTH_FAIL",
+      payload: { message: "Authentication failed" }
+    });
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const authCheck = () => async dispatch => {
+  if (localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await api.get("/checkAuth", {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      });
+      if (response.data.message === "Authentication successful") {
+        return dispatch({ type: "AUTH_SUCCESS", payload: response.data });
+      }
+      return dispatch({ type: "AUTH_FAIL", payload: response.data });
+    } catch (error) {
+      alert(error);
+    }
+  }
+  return dispatch({
+    type: "AUTH_FAIL",
+    payload: { message: "Authentication failed" }
+  });
+};
+
 export const fetchStudents = () => {
   return async dispatch => {
     try {
