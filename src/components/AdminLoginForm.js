@@ -11,7 +11,7 @@ import {
 import { connect } from "react-redux";
 import { authSubmit } from "../actions";
 import { withRouter } from "react-router-dom";
-const LoginForm = props => {
+const AdminLoginForm = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const onloginSubmit = async e => {
@@ -27,7 +27,7 @@ const LoginForm = props => {
     await props.authSubmit(formValues);
   };
   useEffect(() => {
-    document.title = "Student Login";
+    document.title = "Admin Login";
 
     if (props.auth && props.auth.message) {
       if (props.auth.message === "Authentication successful") {
@@ -44,7 +44,7 @@ const LoginForm = props => {
             <Image src="/logo.jpg" />
           </Header>
           <Header as="h3" textAlign="center">
-            Student Login
+            Admin Login
           </Header>
         </Modal.Header>
         <Modal.Content>
@@ -57,7 +57,7 @@ const LoginForm = props => {
                   fluid
                   icon="user"
                   iconPosition="left"
-                  placeholder="Enter Roll number"
+                  placeholder="Username"
                   required
                 />
                 <Form.Input
@@ -72,7 +72,7 @@ const LoginForm = props => {
                 />
 
                 <Button
-                  style={{ backgroundColor: "#1C5A28", color: "white" }}
+                  style={{ backgroundColor: "#1340BE", color: "white" }}
                   fluid
                   size="large"
                 >
@@ -94,4 +94,4 @@ export default connect(
   {
     authSubmit
   }
-)(withRouter(LoginForm));
+)(withRouter(AdminLoginForm));

@@ -1,26 +1,10 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Icon,
-  Menu,
-  Segment,
-  Sidebar,
-  Image,
-  Dropdown,
-  DropdownDivider
-} from "semantic-ui-react";
+import { Menu, Segment, Sidebar, Image, Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { logout } from "../actions";
 import { connect } from "react-redux";
 class SideBar extends Component {
-  state = { visible: false };
-
-  handleHideClick = () => this.setState({ visible: false });
-  handleShowClick = () => this.setState({ visible: true });
-  handleSidebarHide = () => this.setState({ visible: false });
-
   render() {
-    const { visible } = this.state;
     const { children } = this.props;
 
     return (
@@ -29,24 +13,30 @@ class SideBar extends Component {
           <Menu
             fixed="top"
             inverted
-            style={{ backgroundColor: "#1C5A28", height: "50px" }}
+            borderless
+            style={{
+              backgroundColor: "#004ea0",
+              height: "10px",
+              padding: 0,
+              color: "black"
+            }}
           >
-            <Menu.Item onClick={this.handleShowClick}>
-              <Button icon basic inverted toggle>
-                <Icon name="content" />
-              </Button>
-            </Menu.Item>
-            <Menu.Item as={Link} to="/" header>
+            <Menu.Item as={Link} to="/">
               <Image
                 size="mini"
                 src="/logo.jpg"
-                style={{ marginRight: "1.5em" }}
+                style={{ width: "25px", height: "25px" }}
                 circular
               />
-              Legacy
             </Menu.Item>
 
-            <Dropdown item simple closeOnChange text="Menu">
+            <Dropdown
+              item
+              simple
+              text="Core"
+              icon="angle down"
+              style={{ paddingRight: "0px", color: "white" }}
+            >
               <Dropdown.Menu>
                 <Dropdown.Header>STUDENTS</Dropdown.Header>
                 <Dropdown.Item as={Link} to="/new">
@@ -56,28 +46,37 @@ class SideBar extends Component {
                   Admission Batch
                 </Dropdown.Item>
                 <Dropdown.Item>Registration Number</Dropdown.Item>
-                <DropdownDivider />
-                <Dropdown.Item>
-                  <i className="dropdown icon" />
+              </Dropdown.Menu>
+            </Dropdown>
 
-                  <span className="text">Creation</span>
-                  <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/createschool">
-                      School Creation
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/createdepartment">
-                      Department Creation
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/createprogramme">
-                      Programme Creation
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/createscheme">
-                      Scheme Creation
-                    </Dropdown.Item>
-                    <Dropdown.Item>Semester Creation</Dropdown.Item>
-                    <Dropdown.Item>Course Creation</Dropdown.Item>
-                  </Dropdown.Menu>
+            <Dropdown
+              item
+              simple
+              text="Academics"
+              icon="angle down"
+              style={{ color: "white" }}
+            >
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/createschool">
+                  School
                 </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/createdepartment">
+                  Department
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/createprogramme">
+                  Degree
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/createscheme">
+                  Scheme
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/branch">
+                  Branch
+                </Dropdown.Item>
+                <Dropdown.Item>Semester</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/course">
+                  Course
+                </Dropdown.Item>
+                <Dropdown.Divider />
                 <Dropdown.Item>
                   <i className="dropdown icon" />
                   <span className="text">Mapping</span>
@@ -90,28 +89,18 @@ class SideBar extends Component {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Menu.Item onClick={this.props.logout}>Logout</Menu.Item>
+            <Menu.Item
+              onClick={this.props.logout}
+              position="right"
+              style={{ color: "white" }}
+            >
+              Logout
+            </Menu.Item>
           </Menu>
-          <Sidebar
-            as={Menu}
-            animation="overlay"
-            inverted
-            onHide={this.handleSidebarHide}
-            vertical
-            visible={visible}
-            width="thin"
-          >
-            <Menu.Item as="a">Home</Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-          </Sidebar>
 
-          <Sidebar.Pusher
-            dimmed={visible}
-            style={{ minHeight: "100vh", marginTop: "60px" }}
-          >
+          <div style={{ minHeight: "100vh", marginTop: "45px" }}>
             {children}
-          </Sidebar.Pusher>
+          </div>
           <Segment
             inverted
             style={{

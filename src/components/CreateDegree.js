@@ -22,8 +22,7 @@ class CreateProgramme extends Component {
     editopen: false,
     pid: null,
     pname: null,
-    pcode: null,
-    syear: null
+    pcode: null
   };
   deleteShow = programme => {
     this.setState({
@@ -37,7 +36,7 @@ class CreateProgramme extends Component {
       pid: programme.id,
       pname: programme.name,
       pcode: programme.code,
-      syear: programme.start_year,
+
       editopen: true
     });
   };
@@ -46,8 +45,7 @@ class CreateProgramme extends Component {
       deleteopen: false,
       pid: null,
       pname: null,
-      pcode: null,
-      syear: null
+      pcode: null
     });
   };
   closeEdit = () => {
@@ -55,8 +53,7 @@ class CreateProgramme extends Component {
       editopen: false,
       pid: null,
       pname: null,
-      pcode: null,
-      syear: null
+      pcode: null
     });
   };
   deleteProgrammeFunction = async () => {
@@ -65,16 +62,14 @@ class CreateProgramme extends Component {
       deleteopen: false,
       pid: null,
       pname: null,
-      pcode: null,
-      syear: null
+      pcode: null
     });
   };
   onSubmitEdit = async e => {
     e.preventDefault();
     const formValues = {
       name: this.state.pname,
-      code: this.state.pcode,
-      start_year: this.state.syear
+      code: this.state.pcode
     };
 
     await this.props.editProgramme(this.state.pid, formValues);
@@ -82,14 +77,15 @@ class CreateProgramme extends Component {
       editopen: false,
       pid: null,
       pname: null,
-      pcode: null,
-      syear: null
+      pcode: null
     });
   };
   componentDidMount() {
     this.props.fetchProgrammes();
   }
-
+  componentDidUpdate() {
+    this.props.fetchProgrammes();
+  }
   onSubmit = formValues => {
     this.props.createProgramme(formValues);
     this.props.reset("createProgramme");
@@ -114,13 +110,13 @@ class CreateProgramme extends Component {
   };
   renderProgrammes = () => {
     return this.props.programmes.map(programme => {
-      if (programme !== "Search Not Found") {
+      if (programme !== "Search Not Found" && programme !== "") {
         return (
           <React.Fragment key={programme.id}>
             <Table.Row key={programme.id}>
               <Table.Cell collapsing>{programme.code}</Table.Cell>
               <Table.Cell>{programme.name}</Table.Cell>
-              <Table.Cell collapsing>{programme.start_year}</Table.Cell>
+
               <Table.Cell collapsing>
                 <Button.Group compact>
                   <Button
@@ -150,7 +146,7 @@ class CreateProgramme extends Component {
       <React.Fragment>
         <Container text>
           <Header as="h2" textAlign="center" block style={{ marginTop: "5px" }}>
-            Create Programme
+            Degree
           </Header>
           <Segment attached>
             <Form as="form" onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -158,7 +154,7 @@ class CreateProgramme extends Component {
                 <Field
                   name="name"
                   component={this.renderInput}
-                  label="Programme Name"
+                  label="Degree Name"
                   placeholder="Name..."
                 />
               </Form.Field>
@@ -166,16 +162,8 @@ class CreateProgramme extends Component {
                 <Field
                   name="code"
                   component={this.renderInput}
-                  label="Programme Code"
+                  label="Degree Code"
                   placeholder="Code..."
-                />
-              </Form.Field>
-              <Form.Field>
-                <Field
-                  name="start_year"
-                  component={this.renderInput}
-                  label="Start Year"
-                  placeholder="Starting year..."
                 />
               </Form.Field>
 
@@ -187,7 +175,7 @@ class CreateProgramme extends Component {
               <Table.Row>
                 <Table.HeaderCell>Code</Table.HeaderCell>
                 <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Start Year</Table.HeaderCell>
+
                 <Table.HeaderCell>...</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
@@ -202,9 +190,9 @@ class CreateProgramme extends Component {
           open={this.state.deleteopen}
           onClose={this.closeDelete}
         >
-          <Modal.Header>Delete Programme</Modal.Header>
+          <Modal.Header>Delete Degree</Modal.Header>
           <Modal.Content>
-            <p>Are you sure you want to delete {this.state.pname} programme?</p>
+            <p>Are you sure you want to delete {this.state.pname} degree?</p>
           </Modal.Content>
           <Modal.Actions>
             <Button onClick={this.closeDelete} negative>
